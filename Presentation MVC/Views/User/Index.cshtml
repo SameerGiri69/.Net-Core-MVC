@@ -1,0 +1,48 @@
+﻿@using Presentation_MVC.ViewModels
+@using RunningGroups.ViewModels
+@model List<UserInformationViewModel>
+
+<section class="flush-with-above">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;" class="table table-hover align-items-center table-borderless">
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr style="background-color: #f8f9fa;">
+                                <th scope="row">
+                                    <div style="display: flex; align-items: center;">
+                                        <img alt="Image profile avatar" src="@user.ProfileImageUrl" style="width: 50px; height: 50px; border-radius: 50%;">
+
+                                        <div style="margin-left: 10px;">
+                                            <span style="font-size: 16px; color: #212529; font-weight: bold;">@user.Username</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <a style="font-size: 14px; padding: 8px 12px; border: 1px solid #007bff; color: #007bff; text-decoration: none; border-radius: 4px;" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">View Profile</a>
+                                </td>
+
+                                @{
+                                    var mileage = user.Mileage == null ? "?" : user.Mileage.ToString();
+                                    var pace = user.Pace == null ? "?" : user.Mileage.ToString();
+                                }
+                                <td style="font-size: 14px; color: #6c757d;">Miles per week - @mileage</td>
+                                <td style="font-size: 14px; color: #6c757d;">Pace - @pace</td>
+                            </tr>
+                            <tr style="border: none;">
+                                <th></th>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--end of col-->
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
+
